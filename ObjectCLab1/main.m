@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@interface NSString (CountSubstrings)
+- (NSUInteger)occurrencesOfSubstring:(NSString *)subStr;
+@end
+
+@implementation NSString (CountSubstrings)
+- (NSUInteger)occurrencesOfSubstring:(NSString *)subStr {
+  return [[self componentsSeparatedByString:subStr] count] - 1;
+}
+@end
+
 NSString *getUserInput(int maxLength, NSString *prompt) {
   if (maxLength < 1) {
     maxLength = 255;
@@ -58,6 +68,17 @@ int main(int argc, const char * argv[]) {
           }
         } else if ([option isEqualToString:@"6"]) {
           NSLog(@"%@", [strInput stringByReplacingOccurrencesOfString:@" " withString:@"-"]);
+        } else if ([option isEqualToString:@"7"]) {
+            NSLog(@"%lu", (unsigned long)[strInput occurrencesOfSubstring:@"words"]);
+        } else if ([option isEqualToString:@"8"]) {
+            
+
+            strInput=[strInput stringByReplacingOccurrencesOfString:@". " withString:@""];
+            strInput=[strInput stringByReplacingOccurrencesOfString:@"/" withString:@""];
+            strInput=[strInput stringByReplacingOccurrencesOfString:@";" withString:@""];
+            strInput=[strInput stringByReplacingOccurrencesOfString:@"!" withString:@""];
+            strInput=[strInput stringByReplacingOccurrencesOfString:@"," withString:@""];
+          
         }
       }
     }
@@ -65,3 +86,4 @@ int main(int argc, const char * argv[]) {
   }
   return 0;
 }
+
